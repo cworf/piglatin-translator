@@ -1,0 +1,40 @@
+var translate = function(letters) {
+//   var newSentence = [];
+//   words.forEach(function(word){
+
+  //  var letters = word.split("");
+
+    var vowelEx = /[aeiou]/g;
+    var numberEx =/\d/;
+    if (vowelEx.test(letters[0])) {
+      letters.push("way");
+      return letters;
+    } else if (numberEx.test(letters[0])) {
+      return letters;
+    } else {
+
+      while (!vowelEx.test(letters[0])) {
+        if ((letters[0] + letters[1]) === "qu"){
+          letters.push(letters.shift());
+        };
+        letters.push(letters.shift());
+        alert(letters);
+      };
+      letters.push("ay");
+      return letters;
+    };
+//   newSentence.push(word);
+//   });
+//   return newSentence;
+ };
+
+$(function(){
+  $("#pig-latin-form").submit(function(event){
+    event.preventDefault();
+    var userInput = $("#english").val().split("");
+    var pigLatin = translate(userInput);
+
+    alert(pigLatin.join(""));
+  });
+
+});
